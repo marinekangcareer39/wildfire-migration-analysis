@@ -1,12 +1,8 @@
 ****************************************************
-* FULL SAMPLE — DISTRIBUTED LAG + HETEROGENEITY INTERACTIONS
-* ROBUST FINAL VERSION (explicit variable names)
+* Distributed lag models with heterogeneity interactions
+* using income and house-price split variables
 *
-* Heterogeneity splits:
-*   (1) highincome
-*   (2) highhouse
-*
-* Outputs to OUTDIR:
+* Outputs saved to OUTDIR:
 *   - DL_interaction_results_<groupvar>.csv
 *   - DL_cumulative_results_<groupvar>.csv
 *   - DL_<groupvar>_PanelA_ln.rtf / .tex
@@ -20,8 +16,12 @@ version 18
 ****************************************************
 * 0) PATHS / PACKAGES / SETTINGS
 ****************************************************
-local DATAFILE "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
-local OUTDIR   "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local DATAFILE "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+local OUTDIR   "$output"
 
 cap mkdir "`OUTDIR'"
 
