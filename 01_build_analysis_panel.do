@@ -1,6 +1,7 @@
 ****************************************************
-* Final DATA Cleaning - Merge_Marine (STABILIZED v2)
-* NEW USPS DV + POP INCLUDED + FIXED Method2 (positive thresholds)
+* Build ZIP-quarter analysis panel for California
+* Merges USPS migration, wildfire exposure, housing,
+* and population/income data for 2017q2–2023q1
 * Output: FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta
 * Window: 2017q2–2023q1 (24 quarters)
 * Keeps: DV-observed quarters only (dv_matched==1)
@@ -21,7 +22,7 @@
 *   wf_first_fire_yq       = first quarter with wf_exposure==1 (within FINAL DV sample)
 *   wf_exposure_ever       = absorbing: 1 if yq >= wf_first_fire_yq
 *
-* Wildfire Method 2 (FIXED): thresholds computed among POSITIVE wf_zip only
+* Wildfire Method 2 (thresholds among positive wf_zip only):
 *   wf_pos_event           = 1 if wf_zip>0
 *   wf_pos_first_yq        = first yq with wf_zip>0 (within FINAL DV sample)
 *   wf_pos_ever            = absorbing from first positive intensity
@@ -46,16 +47,19 @@
 
 clear all
 set more off
-browse
 
 ****************************************************
 * 0) PATHS
 ****************************************************
-local popincome "/Users/marine/Documents/Senior IS/Economics/Senior IS Data/Data Cleaning/popincome_zip_quarter_CA.dta"
-local wildfire  "/Users/marine/Documents/Senior IS/Economics/Senior IS Data/Data Cleaning/wildfire_zip_quarter_CA_2017q2_2023q1_exposure_intensity.dta"
-local housing   "/Users/marine/Documents/Senior IS/Economics/Senior IS Data/Data Cleaning/housing_zip_quarter_CA.dta"
-local uspsdv    "/Users/marine/Documents/Senior IS/Economics/Senior IS Data/Data Cleaning/DV. USPS/usps_quarterly_CA_2017q2_2023q1.dta"
-local out_final "/Users/marine/Documents/Senior IS/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local popincome "$data/popincome_zip_quarter_CA.dta"
+local wildfire  "$data/wildfire_zip_quarter_CA_2017q2_2023q1_exposure_intensity.dta"
+local housing   "$data/housing_zip_quarter_CA.dta"
+local uspsdv    "$data/usps_quarterly_CA_2017q2_2023q1.dta"
+local out_final "$output/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
 
 ****************************************************
 * 0.1) WINDOW
