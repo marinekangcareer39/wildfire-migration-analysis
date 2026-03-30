@@ -22,3 +22,5 @@ To run the code, place datasets in a `/data` folder.
 - 05_distributed_lag.do: Distributed lag analysis
 - 06_post_dynamics.do: Dynamic effects
 - 07_additional_regs.do: Additional robustness checks
+
+## Due to data access and licensing restrictions, the raw dataset is not publicly available.
