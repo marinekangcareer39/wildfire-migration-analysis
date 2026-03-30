@@ -1,6 +1,6 @@
 # Wildfire and Migration Analysis
 
-This project analyzes the impact of wildfire exposure on migration patterns in California using ZIP code–level quarterly panel data (2017q2–2023q1).
+This project analyzes the impact of wildfire exposure on migration patterns in California using ZIP code–level quarterly panel data (2017q2–2023q1).  Due to data access and licensing restrictions, the raw dataset is not publicly available.
 
 ## Data
 
@@ -23,4 +23,3 @@ To run the code, place datasets in a `/data` folder.
 - 06_post_dynamics.do: Dynamic effects
 - 07_additional_regs.do: Additional robustness checks
 
-## Due to data access and licensing restrictions, the raw dataset is not publicly available.
