@@ -1,6 +1,6 @@
 *****************************************************
-* STEP 2–8 (FULL SAMPLE) — DISTRIBUTED LAG
-* TEX + RTF + CSV + PNG ALL SAVED TO ONE FOLDER
+* Full-sample distributed lag analysis with
+* TeX, RTF, CSV, and PNG outputs saved to one folder
 *****************************************************
 
 clear all
@@ -10,9 +10,13 @@ version 18
 ****************************************************
 * 0) PATHS / SETTINGS
 ****************************************************
-local datafile "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
 
-local OUTDIR "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+local datafile "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+
+local OUTDIR "$output"
 cap mkdir "`OUTDIR'"
 
 local figdir "`OUTDIR'"
