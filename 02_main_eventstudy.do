@@ -1,5 +1,5 @@
 ****************************************************
-* PROFESSOR MAIN SPEC (Option A) + PRE-TREND CHECK <Event STUDY>
+* Main event-study specification with pre-trend check
 ****************************************************
 
 clear all
@@ -17,7 +17,11 @@ local SEDEC "4"
 local STAR  "star(* 0.10 ** 0.05 *** 0.01)"
 local SHOWCONS = 1
 
-local OUTDIR "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local OUTDIR "$output"
 cap mkdir "`OUTDIR'"
 
 local OUTRTF "`OUTDIR'/Table_EventStudy_LeadsOnly.rtf"
@@ -26,7 +30,7 @@ local OUTTEX "`OUTDIR'/Table_EventStudy_LeadsOnly.tex"
 ****************************************************
 * 0) LOAD + PANEL SET
 ****************************************************
-use "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta", clear
+use "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta", clear
 
 isid zip yq
 xtset zip yq
