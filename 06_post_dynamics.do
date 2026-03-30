@@ -1,16 +1,6 @@
 ****************************************************
-* A) FULL POST-DYNAMICS EVENT-STUDY (4-outcome set)
-* - Treated: ever had p90 wildfire event during 2017q2–2023q1
-* - Control: never had p90 wildfire event during sample (clean control)
-* - Event time: rel_p90 = yq - wf_int90p_first_yq (quarters)
-* - Window: leads -4,-3,-2 and lags 0..+8
-* - Reference period: rel = -1 (omitted)
-* - Spec: y_it = Σ_k β_k 1(rel=k)*Treated + ZIP FE + yq FE
-* - SE: cluster(zip)
-*
-* Outputs:
-*   (1) Four event-study plots (nettotal, netperm, inperm, outperm)
-*   (2) CSV of coefficients for plotting / paper
+* Full post-dynamics event-study for four outcomes
+* with coefficient export, plots, and table output
 ****************************************************
 
 clear all
@@ -20,8 +10,12 @@ version 18
 ****************************************************
 * 0) PATHS / PACKAGES / SETTINGS
 ****************************************************
-local DATAFILE "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
-local OUTDIR   "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local DATAFILE "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+local OUTDIR   "$output"
 
 cap mkdir "`OUTDIR'"
 
