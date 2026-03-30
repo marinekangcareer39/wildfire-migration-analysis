@@ -1,27 +1,9 @@
 ****************************************************
-* STEP 6A — INCOME HETEROGENEITY (EVENT-TIME DID, Option A) + SANITY + TABLE + GRAPH
-*
-* This block is meant to be appended AFTER your baseline Event-Study code.
-* It keeps the same:
-*   - Option A sample (ever-treated vs never-treated)
-*   - lead structure (lead4 lead3 lead2)
-*   - FE: ZIP FE + yq FE, cluster(zip)
-*
-* WHAT THIS DOES:
-*  (1) Drop ZIPs with missing income (median_income missing)
-*  (2) Create high_income = 1 if median_income > sample median (across ZIPs)
-*  (3) Sanity checks (obs/ZIP counts, treated share, lead counts, DV missingness by group)
-*  (4) Run event-time DID separately for low-income and high-income groups
-*      - 4 outcomes (winsorized rates)
-*  (5) Extract a clean CSV table of key results (wf_int90p_ever + lead joint p + N + #ZIP)
-*  (6) Produce a simple coefficient plot for wf_int90p_ever by group/outcome (optional graph)
-*
-* OUTPUTS:
-*   Income_Heterogeneity_EventStudy_Table.csv
-*   Income_Heterogeneity_wfcoef.png   (simple coefficient plot)
+* Income heterogeneity event-time DID with sanity checks,
+* table exports, and coefficient graph
 ****************************************************
-* STEP 6A — INCOME HETEROGENEITY (EVENT-TIME DID, Option A)
-* FULL SCRIPT: SANITY + CSV + GRAPH + RTF/TEX TABLES
+* Income heterogeneity event-time DID
+* Full script: sanity checks, CSV, graph, RTF, and TeX tables
 ****************************************************
 
 clear all
@@ -31,8 +13,12 @@ version 18
 ****************************************************
 * 0) PATHS / PACKAGES
 ****************************************************
-local DATAFILE "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
-local OUTDIR   "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local DATAFILE "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+local OUTDIR   "$output"
 
 cap mkdir "`OUTDIR'"
 
