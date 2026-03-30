@@ -1,20 +1,9 @@
-
 ****************************************************
-* Step6B_HouseOnly.do
-* HOUSE PRICE (WEALTH) HETEROGENEITY — Event-time DID (Option A)
-*
-* - Income 파트 없음
-* - House price missing은 ZIP 통째가 아니라 "해당 zip-quarter obs만 drop"
-* - 기존 변수 있으면 재사용 (rel_p90, lead4/3/2, wf90ever_treated, es_ok 등)
-*
-* OUTPUTS:
-*   House_Heterogeneity_EventStudy_Table.csv
-*   House_Heterogeneity_wfcoef.png
+* House price heterogeneity event-time DID with sanity checks,
+* table exports, and coefficient graph
 ****************************************************
-
-****************************************************
-* STEP 6B — HOUSE HETEROGENEITY (EVENT-TIME DID, Option A)
-* FULL SCRIPT: SANITY + CSV + GRAPH + RTF/TEX TABLES
+* House price heterogeneity event-time DID
+* Full script: sanity checks, CSV, graph, RTF, and TeX tables
 ****************************************************
 
 clear all
@@ -24,8 +13,12 @@ version 18
 ****************************************************
 * 0) PATHS / PACKAGES
 ****************************************************
-local DATAFILE "/Users/marine/Documents/Senior IS Final/Economics/Senior IS Data/Data Cleaning/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
-local OUTDIR   "/Users/marine/Documents/Senior IS Final/Economics/Outputs"
+global root "YOUR_PROJECT_FOLDER"
+global data "$root/data"
+global output "$root/output"
+
+local DATAFILE "$data/FINAL_REGRESSION_TWFE_CA_2017q2_2023q1.dta"
+local OUTDIR   "$output"
 
 cap mkdir "`OUTDIR'"
 
@@ -167,7 +160,7 @@ count if missing(median_house_price)
 
 drop if missing(median_house_price)
 
-di as text "After dropping missing house price obs:"
+di as text "After dropping missing house price observations:"
 count
 
 ****************************************************
